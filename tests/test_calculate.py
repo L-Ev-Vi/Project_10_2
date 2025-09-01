@@ -10,3 +10,23 @@ from src.calculate import calculate_taxes
 
 def test_calculate_taxes(prices1, tax_rate, resul):
     assert calculate_taxes(prices1, tax_rate) == resul
+
+def test_calculate_taxes_prices1_zero():
+    with pytest.raises(ValueError) as info:
+        calculate_taxes([0], 10)
+
+def test_calculate_taxes_tax_rate_100(prices1):
+    with pytest.raises(ValueError) as info:
+        calculate_taxes(prices1, 100)
+
+def test_calculate_taxes_tax_rate_zero(prices1):
+    with pytest.raises(ValueError) as info:
+        calculate_taxes(prices1, 0)
+
+def test_calculate_taxes_tax_rate_200(prices1):
+    with pytest.raises(ValueError) as info:
+        calculate_taxes(prices1, 200)
+
+def test_calculate_taxes_tax_rate_minus_50(prices1):
+    with pytest.raises(ValueError) as info:
+        calculate_taxes(prices1, -50)
